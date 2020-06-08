@@ -1,0 +1,10 @@
+<?php
+
+namespace DummyNamespace;
+
+use Hashemi\QueryFilter\QueryFilter;
+
+class DummyClass extends QueryFilter
+{
+
+}
