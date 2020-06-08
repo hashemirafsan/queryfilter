@@ -38,7 +38,7 @@ class QueryFilter
 
         $params = $this->getRequest()->all();
         foreach ($params as $method => $param) {
-            $method = sprintf('%sFilter', ucwords($method, '_'));
+            $method = sprintf('apply%sProperty', ucwords($method, '_'));
             if (method_exists($this, $method)) {
                 call_user_func_array([$this, $method], [$param]);
             }
