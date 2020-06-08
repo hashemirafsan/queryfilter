@@ -1,13 +1,13 @@
-#Laravel QueryFilter
+# Laravel QueryFilter
 A simple & dynamic package for your eloquent query in laravel. It will help 
 you to write query logic individual for each parameter.
 
 ## Installation
 You can start it from composer. Go to your terminal and run this command from your project root directory.
 
-``php
+```php
 composer require hashemi/queryfilter
-``
+```
 ## Configurations
 Suppose you want use query-filters on `User` model for query. Laravel QueryFilter provide
 `Filterable` trait . You need to use it on your model. It will add a scope `filter` on your model. Like,
