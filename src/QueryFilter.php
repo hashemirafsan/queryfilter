@@ -107,7 +107,8 @@ class QueryFilter
     /**
      * @return array
      */
-    private function getFilterParams () : array {
+    private function getFilterParams () : array
+    {
         return array_merge($this->getRequest()->all(), $this->getQueries());
     }
 }
