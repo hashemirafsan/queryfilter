@@ -1,12 +1,9 @@
 <?php
 
-/**
- * Dummy Model
- */
-class User extends \Illuminate\Database\Eloquent\Model
+use Hashemi\QueryFilter\Filterable;
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
 {
-    // Use Filterable Trait
-    // ....
-    use \Hashemi\QueryFilter\Filterable;
-    // ....
+    use Filterable;
 }

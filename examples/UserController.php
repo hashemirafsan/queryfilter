@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class UserController extends \App\Http\Controllers\Controller
+class UserController extends Controller
 {
-    public function index(\Illuminate\Http\Request $request, UserFilter $filter)
+    public function index(Request $request, DummyFilter $filter)
     {
-        $user = User::query()->apply_filter($filter)->get();
+        $user = User::filter($filter)->get();
         // do whatever
     }
 }
