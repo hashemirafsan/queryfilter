@@ -27,10 +27,18 @@
         "illuminate/http": "^6.0|^7.0",
         "illuminate/console": "^6.0|^7.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^8.4|^9.0"
+    },
     "autoload": {
         "psr-4": {
             "Hashemi\\QueryFilter\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/Helpers"
+        ]
     },
     "extra": {
         "laravel": {
