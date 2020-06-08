@@ -13,12 +13,14 @@ use Illuminate\Database\Eloquent\Builder;
 trait Filterable
 {
     /**
-     * @param Builder $builder
+     * @param Builder     $builder
      * @param QueryFilter $filter
+     * @param array       $queries
+     *
      * @return Builder
      */
-    public static function scopeFilter(Builder $builder, QueryFilter $filter) : Builder
+    public static function scopeFilter(Builder $builder, QueryFilter $filter, array $queries = []) : Builder
     {
-        return $filter->apply($builder);
+        return $filter->setQueries($queries)->apply($builder);
     }
 }
