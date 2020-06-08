@@ -24,11 +24,19 @@
         "php": ">=7.1",
         "illuminate/database": "^6.0|^7.0",
         "illuminate/support": "^6.0|^7.0",
-        "illuminate/http": "^6.0|^7.0"
+        "illuminate/http": "^6.0|^7.0",
+        "illuminate/console": "^6.0|^7.0"
     },
     "autoload": {
         "psr-4": {
             "Hashemi\\QueryFilter\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hashemi\\QueryFilter\\QueryFilterServiceProvider"
+            ]
         }
     }
 }
