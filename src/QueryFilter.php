@@ -5,6 +5,7 @@ namespace Hashemi\QueryFilter;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * Class QueryFilter
@@ -42,7 +43,7 @@ class QueryFilter
 
         $params = $this->getFilterParams();
         foreach ($params as $method => $param) {
-            $method = sprintf('apply%sProperty', ucwords($method, '_'));
+            $method = sprintf('apply%sProperty', Str::studly($method));
             if (method_exists($this, $method)) {
                 call_user_func_array([$this, $method], [$param]);
             }
