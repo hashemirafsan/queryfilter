@@ -1,6 +1,6 @@
 {
     "name": "hashemi/queryfilter",
-    "description": "A simple trait for generate dynamic query filter",
+    "description": "A simple & dynamic package for your eloquent query in laravel. It will help you to write query logic individual for each parameter.",
     "type": "library",
     "license": "MIT",
     "keywords": [
