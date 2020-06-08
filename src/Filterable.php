@@ -4,7 +4,7 @@
 namespace Hashemi\QueryFilter;
 
 
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Trait Filterable
@@ -13,11 +13,11 @@ use Illuminate\Database\Query\Builder;
 trait Filterable
 {
     /**
-     * @param $builder
+     * @param Builder $builder
      * @param QueryFilter $filter
      * @return Builder
      */
-    public static function scopeApplyFilter($builder, QueryFilter $filter) : Builder
+    public static function scopeFilter(Builder $builder, QueryFilter $filter) : Builder
     {
         return $filter->apply($builder);
     }

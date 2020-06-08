@@ -17,9 +17,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": "^7.1.*",
-        "illuminate/http": "^5.*|^6.*|^7.*|^8.0@dev",
-        "illuminate/database": "^5.*|^6.*|^7.*|^8.0@dev"
+        "php": ">=7.1"
     },
     "autoload": {
         "psr-4": {

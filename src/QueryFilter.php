@@ -3,7 +3,7 @@
 
 namespace Hashemi\QueryFilter;
 
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 /**
@@ -22,9 +22,10 @@ class QueryFilter
      */
     protected $builder;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, Builder $builder)
     {
         $this->setRequest($request);
+        $this->setBuilder($builder);
     }
 
     /**
@@ -33,9 +34,10 @@ class QueryFilter
      */
     public function apply(Builder $builder) : Builder
     {
+        $this->setBuilder($builder);
+
         $params = $this->getRequest()->all();
         foreach ($params as $method => $param) {
-            $this->setBuilder($builder);
             $method = sprintf('%sFilter', ucwords($method, '_'));
             if (method_exists($this, $method)) {
                 call_user_func_array([$this, $method], [$param]);
