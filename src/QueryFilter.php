@@ -16,17 +16,21 @@ class QueryFilter
     /**
      * @var
      */
-    protected $request;
+    private $request;
 
     /**
      * @var
      */
     protected $builder;
 
-    public function __construct(Request $request, Builder $builder)
+    /**
+     * @var array
+     */
+    protected $queries = [];
+
+    public function __construct(Request $request)
     {
         $this->setRequest($request);
-        $this->setBuilder($builder);
     }
 
     /**
@@ -37,7 +41,7 @@ class QueryFilter
     {
         $this->setBuilder($builder);
 
-        $params = $this->getRequest()->all();
+        $params = $this->getFilterParams();
         foreach ($params as $method => $param) {
             $method = sprintf('apply%sProperty', Str::studly($method));
             if (method_exists($this, $method)) {
@@ -78,5 +82,32 @@ class QueryFilter
     public function getBuilder() : Builder
     {
         return $this->builder;
+    }
+
+    /**
+     * @param array $queries
+     *
+     * @return $this
+     */
+    public function setQueries (array $queries) : self
+    {
+        $this->queries = $queries;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getQueries () : array
+    {
+        return $this->queries;
+    }
+
+    /**
+     * @return array
+     */
+    private function getFilterParams () : array {
+        return array_merge($this->getRequest()->all(), $this->getQueries());
     }
 }
