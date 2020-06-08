@@ -1,0 +1,29 @@
+{
+    "name": "hashemi/queryfilter",
+    "description": "A simple trait for generate dynamic query filter",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "filter",
+        "query",
+        "query-filters",
+        "laravel"
+    ],
+    "authors": [
+        {
+            "name": "Hashemi Rafsan",
+            "email": "rafsanhashemi@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.1.*",
+        "illuminate/http": "^5.*|^6.*|^7.*|^8.0@dev",
+        "illuminate/database": "^5.*|^6.*|^7.*|^8.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hashemi\\QueryFilter\\": "src/"
+        }
+    }
+}
