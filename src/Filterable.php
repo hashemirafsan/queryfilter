@@ -13,14 +13,24 @@ use Illuminate\Database\Eloquent\Builder;
 trait Filterable
 {
     /**
-     * @param Builder     $builder
+     * @param Builder $builder
      * @param QueryFilter $filter
-     * @param array       $queries
-     *
+     * @param array $customQueryParams
+     * @param bool $requestParamsOnly
+     * @param bool $customQueryParamsOnly
      * @return Builder
      */
-    public static function scopeFilter(Builder $builder, QueryFilter $filter, array $queries = []) : Builder
+    public static function scopeFilter(
+        Builder $builder,
+        QueryFilter $filter,
+        array $customQueryParams = [],
+        bool $requestParamsOnly = false,
+        bool $customQueryParamsOnly = false
+    ) : Builder
     {
-        return $filter->setQueries($queries)->apply($builder);
+        return $filter->setQueries($customQueryParams)
+                      ->setRequestParamsOnly($requestParamsOnly)
+                      ->setCustomQueryParamsOnly($customQueryParamsOnly)
+                      ->apply($builder);
     }
 }

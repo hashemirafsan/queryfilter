@@ -28,6 +28,17 @@ class QueryFilter
      */
     protected $queries = [];
 
+    /**
+     * @var bool
+     */
+    protected $requestParamsOnly = false;
+
+    /**
+     * @var bool
+     */
+    protected $customQueryParamsOnly = false;
+
+
     public function __construct(Request $request)
     {
         $this->setRequest($request);
@@ -58,6 +69,42 @@ class QueryFilter
     protected function setRequest(Request $request) : void
     {
         $this->request = $request;
+    }
+
+    /**
+     * @param bool $requestParamsOnly
+     */
+    public function setRequestParamsOnly(bool $requestParamsOnly): self
+    {
+        $this->requestParamsOnly = $requestParamsOnly;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isRequestParamsOnly(): bool
+    {
+        return $this->requestParamsOnly;
+    }
+
+    /**
+     * @param bool $customQueryParamsOnly
+     */
+    public function setCustomQueryParamsOnly(bool $customQueryParamsOnly): self
+    {
+        $this->customQueryParamsOnly = $customQueryParamsOnly;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCustomQueryParamsOnly(): bool
+    {
+        return $this->customQueryParamsOnly;
     }
 
     /**
@@ -109,6 +156,14 @@ class QueryFilter
      */
     private function getFilterParams () : array
     {
+        if ($this->isRequestParamsOnly()) {
+            return $this->getRequest()->all();
+        }
+
+        if ($this->isCustomQueryParamsOnly()) {
+            return $this->getQueries();
+        }
+
         return array_merge($this->getRequest()->all(), $this->getQueries());
     }
 }
