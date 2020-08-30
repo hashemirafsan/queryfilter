@@ -56,7 +56,7 @@ class QueryFilter
         foreach ($params as $method => $param) {
             $method = sprintf('apply%sProperty', Str::studly($method));
             if (method_exists($this, $method)) {
-                call_user_func_array([$this, $method], [$param]);
+                call_user_func_array([$this, $method], [$param, $params]);
             }
         }
 
