@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Hashemi\QueryFilter;
 
@@ -39,16 +40,23 @@ class QueryFilter
     protected $customQueryParamsOnly = false;
 
 
+    /**
+     * QueryFilter constructor.
+     * @param Request $request
+     */
     public function __construct(Request $request)
     {
         $this->setRequest($request);
     }
 
     /**
+     * This method will built the logical portion which is define
+     * in your filter file
+     *
      * @param Builder $builder
      * @return Builder
      */
-    public function apply(Builder $builder) : Builder
+    public function apply(Builder $builder): Builder
     {
         $this->setBuilder($builder);
 
@@ -64,14 +72,19 @@ class QueryFilter
     }
 
     /**
+     * This method will set Request
+     *
      * @param Request $request
      */
-    protected function setRequest(Request $request) : void
+    protected function setRequest(Request $request): void
     {
         $this->request = $request;
     }
 
     /**
+     * This method will set this filter serve for only
+     * Request params or not
+     *
      * @param bool $requestParamsOnly
      */
     public function setRequestParamsOnly(bool $requestParamsOnly): self
@@ -82,6 +95,9 @@ class QueryFilter
     }
 
     /**
+     * When you want to execute only request params only then
+     * you should made it "true" otherwise default it's "false"
+     *
      * @return bool
      */
     protected function isRequestParamsOnly(): bool
@@ -90,6 +106,9 @@ class QueryFilter
     }
 
     /**
+     * This method will set this filter serve for only
+     * Custom params or not
+     *
      * @param bool $customQueryParamsOnly
      */
     public function setCustomQueryParamsOnly(bool $customQueryParamsOnly): self
@@ -100,6 +119,9 @@ class QueryFilter
     }
 
     /**
+     * When you want to execute only custom params only then
+     * you should made it "true" otherwise default it's "false"
+     *
      * @return bool
      */
     public function isCustomQueryParamsOnly(): bool
@@ -108,14 +130,18 @@ class QueryFilter
     }
 
     /**
+     * This method will provide "Request" instance
+     *
      * @return Request
      */
-    protected function getRequest() : Request
+    protected function getRequest(): Request
     {
         return $this->request;
     }
 
     /**
+     * This method will set "Builder"
+     *
      * @param mixed $builder
      */
     public function setBuilder($builder): void
@@ -124,19 +150,22 @@ class QueryFilter
     }
 
     /**
+     * This method will provide "Builder" instance
+     *
      * @return Builder
      */
-    public function getBuilder() : Builder
+    public function getBuilder(): Builder
     {
         return $this->builder;
     }
 
     /**
-     * @param array $queries
+     * This method will set queries
      *
+     * @param array $queries
      * @return $this
      */
-    public function setQueries (array $queries) : self
+    public function setQueries (array $queries): self
     {
         $this->queries = $queries;
 
@@ -144,17 +173,21 @@ class QueryFilter
     }
 
     /**
+     * This method will provide queries
+     *
      * @return array
      */
-    public function getQueries () : array
+    public function getQueries(): array
     {
         return $this->queries;
     }
 
     /**
+     * This method will provide Filter params
+     *
      * @return array
      */
-    private function getFilterParams () : array
+    private function getFilterParams(): array
     {
         if ($this->isRequestParamsOnly()) {
             return $this->getRequest()->all();

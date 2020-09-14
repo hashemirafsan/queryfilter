@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Hashemi\QueryFilter;
-
 
 use Illuminate\Database\Eloquent\Builder;
 
@@ -13,6 +13,9 @@ use Illuminate\Database\Eloquent\Builder;
 trait Filterable
 {
     /**
+     * This method will be add a scope in your model
+     * and apply all the filter you added on your filter file
+     *
      * @param Builder $builder
      * @param QueryFilter $filter
      * @param array $customQueryParams
@@ -26,7 +29,7 @@ trait Filterable
         array $customQueryParams = [],
         bool $requestParamsOnly = false,
         bool $customQueryParamsOnly = false
-    ) : Builder
+    ): Builder
     {
         return $filter->setQueries($customQueryParams)
                       ->setRequestParamsOnly($requestParamsOnly)
